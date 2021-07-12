@@ -20,19 +20,9 @@ const data = {
 		id: "6i6folBtxKV28WX3msQ4FE",
 		images: [
 			{
-				height: 640,
-				url: "https://i.scdn.co/image/ab67616d0000b273e8b066f70c206551210d902b",
-				width: 640,
-			},
-			{
 				height: 300,
 				url: "https://i.scdn.co/image/ab67616d00001e02e8b066f70c206551210d902b",
 				width: 300,
-			},
-			{
-				height: 64,
-				url: "https://i.scdn.co/image/ab67616d00004851e8b066f70c206551210d902b",
-				width: 64,
 			},
 		],
 		name: "Bohemian Rhapsody (The Original Soundtrack)",
