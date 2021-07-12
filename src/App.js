@@ -9,7 +9,6 @@ function App() {
 	return (
 		<div className="App">
 			<Home />
-			<br />
 			<Track />
 		</div>
 	);
