@@ -1,17 +1,12 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Home from "./pages/home/index";
-import Track from "./pages/home/track";
+import MusicPlaylist from "./components/music-playlist";
 
-function App() {
-	console.log(process.env.REACT_APP_SPOTIFY);
-
+const App = () => {
 	return (
 		<div className="App">
-			<Home />
-			<Track />
+			<MusicPlaylist />
 		</div>
 	);
-}
+};
 
 export default App;
