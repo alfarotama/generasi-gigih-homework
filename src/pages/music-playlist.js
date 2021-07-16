@@ -1,7 +1,7 @@
 import React from "react";
-import data from "../../components/dummy-data";
-import Song from "../../components/song";
-import ImageMusic from "../../components/image";
+import data from "../components/dummy-data";
+import ImageMusic from "../components/image/index";
+import Song from "../components/song/index";
 
 const MusicPlaylist = () => {
 	return (
