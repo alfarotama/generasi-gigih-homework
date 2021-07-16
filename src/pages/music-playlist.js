@@ -7,11 +7,11 @@ const MusicPlaylist = () => {
 	return (
 		<div>
 			<h1>My playlist</h1>
-			<ImageMusic image={data.album.images[0].url} />
+			<ImageMusic image={data[0].album.images[0].url} />
 			<Song
-				title={data.name}
-				artist={data.artists[0].name}
-				album={data.album.name}
+				title={data[0].name}
+				artist={data[0].artists[0].name}
+				album={data[0].album.name}
 			/>
 			<button>Select</button>
 		</div>
