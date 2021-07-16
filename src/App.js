@@ -1,5 +1,5 @@
 import "./App.css";
-import MusicPlaylist from "./components/music-playlist";
+import MusicPlaylist from "./pages/music-playlist";
 
 const App = () => {
 	return (

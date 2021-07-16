@@ -1,5 +1,5 @@
 const ImageMusic = ({ image }) => {
-	return <img src={image} alt="paman rock" />;
+	return <img src={image} alt="oldRock" />;
 };
 
 export default ImageMusic;
