@@ -4,58 +4,77 @@ import Recent from "./Recent";
 import Api from "./Api";
 
 const SpotifyPage = () => {
-	const [view, setView] = useState("api");
+	const [view, set_view] = useState("search");
 	const menu = [
 		{
 			name: "home",
 			text: "Home",
+			icon: "fa-home",
 			page: <Home />,
 		},
 		{
 			name: "recent",
 			text: "Recent",
+			icon: "fa-play-circle",
 			page: <Recent />,
 		},
 		{
-			name: "api",
-			text: "API",
+			name: "search",
+			text: "Search",
+			icon: "fa-search",
 			page: <Api />,
 		},
 	];
 
 	const Page = () => {
 		const selected_page = menu.filter((item) => item.name === view);
-		console.log(selected_page);
 		return selected_page[0].page;
 	};
 
-	return (
-		<div className="p-10">
-			<div className="mb-5 grid justify-center">
-				<img src="spotify.png" className="w-40" alt="logo" />
-			</div>
+	const Menu = () => {
+		return (
+			<div className="text-left">
+				<div className="my-10">
+					<img src="spotify.png" className="w-32" alt="logo" />
+				</div>
 
-			<div className="w-full mt-8 mb-5 text-left">
 				{menu.map((item) => {
 					return (
-						<a
-							className={`mr-5 text-2xl font-bold mb-5 cursor-pointer ${
-								view === item.name
-									? "text-gray-100"
-									: "text-gray-600 hover:text-green-500"
-							}`}
-							onClick={() => {
-								setView(item.name);
-							}}
-						>
-							{item.text}
-						</a>
+						<div className="mb-2 ">
+							<a
+								className={`text-lg font-medium mb-5 ${
+									view === item.name
+										? "text-gray-100"
+										: "text-gray-600 hover:text-sptf"
+								}`}
+								href={`#${item.name}`}
+								onClick={() => {
+									set_view(item.name);
+								}}
+							>
+								<i className={`fa m-2 ${item.icon}`}></i>
+								{item.text}
+							</a>
+						</div>
 					);
 				})}
 			</div>
+		);
+	};
 
-			<Page />
-		</div>
+	return (
+		<>
+			<div className="p-5 w-56 fixed object-left object-top h-screen bg-sptf_black">
+				<Menu />
+			</div>
+
+			<div className="w-full flex flex-wrap">
+				<div className="w-56 border border-blue-600 ">{/* <Menu/> */}</div>
+				<div className="p-5 w-10/12 border-red-600">
+					<Page />
+				</div>
+			</div>
+		</>
 	);
 };
 

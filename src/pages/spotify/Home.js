@@ -1,5 +1,5 @@
 import React from "react";
-import data from "../../data/data_playlists_all";
+import data from "../../data/dummy-data";
 import Track from "../../components/Track";
 
 class Home extends React.Component {
@@ -16,6 +16,7 @@ class Home extends React.Component {
 									track_title={item.name}
 									artist_name={item.album.artists[0].name}
 									album_name={item.album.name}
+									data={item}
 								/>
 							</>
 						);

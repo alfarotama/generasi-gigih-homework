@@ -1,5 +1,5 @@
 import React from "react";
-import data from "../../data/data_playlist";
+import data from "../../data/dummy-data";
 import Track from "../../components/Track";
 
 class Recent extends React.Component {
@@ -12,6 +12,7 @@ class Recent extends React.Component {
 						track_title={data.name}
 						artist_name={data.album.artists[0].name}
 						album_name={data.album.name}
+						data={data}
 					/>
 				</div>
 			</>

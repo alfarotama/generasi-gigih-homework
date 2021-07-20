@@ -1,5 +1,6 @@
 import "./App.css";
-import SpotifyPage from "./page/Spotify";
+import "tailwindcss/tailwind.css";
+import SpotifyPage from "./pages/spotify";
 
 function App() {
 	const spotify_client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
