@@ -35,6 +35,7 @@ function Api() {
 
 	async function handleClick() {
 		try {
+			set_tracks([]);
 			let url =
 				"https://api.spotify.com/v1/search?q=" + query + "&type=track,artist";
 			await axios

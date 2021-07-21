@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Home from "./Home";
 import Recent from "./Recent";
 import Api from "./Api";
+import Favorite from "./Favorite";
 
-const SpotifyPage = () => {
+function SpotifyPage() {
 	const [view, set_view] = useState("search");
 	const menu = [
 		{
@@ -24,6 +25,12 @@ const SpotifyPage = () => {
 			icon: "fa-search",
 			page: <Api />,
 		},
+		{
+			name: "favorite",
+			text: "Favorite",
+			icon: "fa-star",
+			page: <Favorite />,
+		},
 	];
 
 	const Page = () => {
@@ -35,7 +42,9 @@ const SpotifyPage = () => {
 		return (
 			<div className="text-left">
 				<div className="my-10">
-					<img src="spotify.png" className="w-32" alt="logo" />
+					<a href="http://localhost:3000">
+						<img src="spotify.png" className="w-32" alt="logo" />
+					</a>
 				</div>
 
 				{menu.map((item) => {
@@ -76,6 +85,6 @@ const SpotifyPage = () => {
 			</div>
 		</>
 	);
-};
+}
 
 export default SpotifyPage;
