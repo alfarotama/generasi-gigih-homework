@@ -1,16 +1,60 @@
-import React from "react";
-import TrackDetail from "../pages/spotify/TrackDetail";
+import React, { useState } from "react";
+import {
+	useTrackContext,
+	addTrack,
+	removeTrack,
+} from "../contexts/TrackContext";
 
-const Track = (props) => {
-	const handleClick = (title) => {
-		alert(`Now playing: ${title}`);
+function Track(props) {
+	const { track_store, dispatch_track } = useTrackContext();
+	const [isfav, set_isfav] = useState(
+		track_store.filter((item) => {
+			return item.id === props.data.id;
+		}).length === 0
+			? false
+			: true
+	);
+
+	const handleClick = () => {
+		if (
+			track_store.filter((item) => {
+				return item.id === props.data.id;
+			}).length === 0
+		) {
+			dispatch_track(addTrack(props.data));
+		} else {
+			let item = track_store.filter((item) => {
+				return item.id === props.data.id;
+			})[0];
+			let index = track_store.indexOf(item);
+			console.log("Hapus: " + index);
+			dispatch_track(removeTrack(index));
+		}
+		set_isfav(!isfav);
+		console.log("Is Fav?: " + isfav);
+	};
+
+	const Heart = () => {
+		if (isfav) {
+			return (
+				<div className="">
+					<i className="text-red-500 fas fa-heart"></i>
+				</div>
+			);
+		} else {
+			return (
+				<div className="">
+					<i className="text-gray-500 far fa-heart"></i>
+				</div>
+			);
+		}
 	};
 
 	return (
 		<>
 			<div
 				onClick={() => {
-					handleClick(props.track_title);
+					handleClick();
 				}}
 				className="bg-sptf_card px-5 py-5 rounded w-1/5 mr-4 mb-4 cursor-pointer hover:bg-sptf_card_hover"
 			>
@@ -26,11 +70,10 @@ const Track = (props) => {
 				<div className="">
 					<p className="text-sm text-gray-300">{props.artist_name}</p>
 				</div>
+				<Heart />
 			</div>
-
-			<TrackDetail />
 		</>
 	);
-};
+}
 
 export default Track;
