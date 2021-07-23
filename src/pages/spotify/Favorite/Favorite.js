@@ -1,27 +1,15 @@
-import React, { useContext } from "react";
-import Track from "../../../components/Track";
-import { useTrackContext } from "../../../contexts/TrackContext";
+import React from "react";
+import TrackHeader from "../../../components/TrackHeader";
 
-function Favorite() {
-	const { track_store, dispatch_track } = useTrackContext();
-
-	console.log("Data dari favorite: ");
-	console.log(track_store);
-
+function Favorite(props) {
 	return (
 		<>
-			<div className="mt-5 flex flex-wrap">
-				{track_store.map((item) => (
-					<Track
-						key={item.album.id}
-						image_url={item.album.images[0].url}
-						track_title={item.name}
-						artist_name={item.album.artists[0].name}
-						album_name={item.album.name}
-						data={item}
-					/>
-				))}
-			</div>
+			<TrackHeader
+				token={props.token}
+				tracks={props.fav_tracks}
+				fav_tracks={props.fav_tracks}
+				set_fav_tracks={props.set_fav_tracks}
+			/>
 		</>
 	);
 }
