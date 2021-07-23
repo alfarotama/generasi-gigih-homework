@@ -1,81 +1,75 @@
 import React, { useState, useEffect } from "react";
+import Menu from "../../../components/Menu";
 import Login from "./Login";
 import Search from "../Search/Search";
 import Favorite from "../Favorite/Favorite";
-
-import { useAuthContext } from "../../../contexts/AuthContext";
+import PlaylistAll from "../Playlist/PlayListAll";
 
 function Layout() {
 	const [view, set_view] = useState("home");
-	const { auth_store, dispatch_auth } = useAuthContext();
+
+	const [token, set_token] = useState(null);
+	const [user, set_user] = useState(null);
+	const [fav_tracks, set_fav_tracks] = useState([]);
 
 	let menu_list = [
 		{
 			name: "home",
 			text: "Home",
 			icon: "fa-home",
-			page: <Login />,
+			page: (
+				<Login
+					token={token}
+					set_token={set_token}
+					user={user}
+					set_user={set_user}
+				/>
+			),
 		},
 	];
 
-	if (auth_store) {
+	if (token) {
 		menu_list = [
 			{
 				name: "home",
 				text: "Home",
 				icon: "fa-home",
-				page: <Login />,
+				page: (
+					<Login
+						token={token}
+						set_token={set_token}
+						user={user}
+						set_user={set_user}
+					/>
+				),
 			},
 			{
 				name: "search",
 				text: "Search",
 				icon: "fa-search",
-				page: <Search />,
+				page: (
+					<Search
+						token={token}
+						fav_tracks={fav_tracks}
+						set_fav_tracks={set_fav_tracks}
+					/>
+				),
 			},
 			{
 				name: "favorite",
 				text: "Favorite",
 				icon: "fa-heart",
-				page: <Favorite />,
+				page: (
+					<Favorite fav_tracks={fav_tracks} set_fav_tracks={set_fav_tracks} />
+				),
+			},
+			{
+				name: "playlistall",
+				text: "Playlists",
+				icon: "fa-headphones-alt",
+				page: <PlaylistAll token={token} user={user} />,
 			},
 		];
-	}
-
-	function Menu() {
-		useEffect(() => {
-			console.log("Auth di menu: " + auth_store);
-		});
-
-		return (
-			<div className="text-left">
-				<div className="my-10">
-					<a href="http://localhost:3000">
-						<img src="spotify.png" className="w-32" alt="logo" />
-					</a>
-				</div>
-
-				{menu_list.map((item) => {
-					return (
-						<div className="mb-2 ">
-							<a
-								className={`text-lg font-medium mb-5 ${
-									view === item.name
-										? "text-gray-100"
-										: "text-gray-600 hover:text-sptf"
-								}`}
-								href={`#${item.name}`}
-								onClick={() => {
-									set_view(item.name);
-								}}
-							>
-								<i className={`fa m-2 ${item.icon}`}></i>
-								{item.text}
-							</a>
-						</div>
-					);
-				})}
-			</div>
-		);
 	}
 
 	function Page() {
@@ -86,7 +80,12 @@ function Layout() {
 	return (
 		<>
 			<div className="p-5 w-56 fixed object-left object-top h-screen bg-sptf_black">
-				<Menu />
+				<Menu
+					token={token}
+					view={view}
+					set_view={set_view}
+					menu_list={menu_list}
+				/>
 			</div>
 
 			<div className="w-full flex flex-wrap">
