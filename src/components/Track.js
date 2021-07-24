@@ -32,26 +32,12 @@ function Track(props) {
 		set_isfav(!isfav);
 	};
 
-	function AddButton() {
-		return (
-			<i
-				onClick={() => {
-					props.set_show_add_modal(true);
-					props.set_selected_track(props.data);
-				}}
-				className="cursor-pointer text-sm px-2 py-1 rounded-full text-gray-500 fa fa-plus border-2 border-gray-500 hover:text-gray-100 hover:border-gray-100"
-			></i>
-		);
-	}
-
 	function Heart() {
 		if (isfav) {
 			return (
 				<div
 					className="cursor-pointer"
-					onClick={() => {
-						doFav();
-					}}
+					// onClick= {() => {doFav()}}
 				>
 					<i className="text-xl text-red-500 fas fa-heart"></i>
 				</div>
@@ -60,9 +46,7 @@ function Track(props) {
 			return (
 				<div
 					className="cursor-pointer"
-					onClick={() => {
-						doFav();
-					}}
+					// onClick= {() => {doFav()}}
 				>
 					<i className="text-xl text-gray-500 far fa-heart hover:text-gray-100"></i>
 				</div>
@@ -71,9 +55,16 @@ function Track(props) {
 	}
 
 	return (
-		<div className="flex flex-wrap rounded-lg hover:bg-sptf_card_hover">
+		<div
+			href="#"
+			onClick={() => {
+				props.set_view("trackdetail");
+				props.set_track_id(props.data.id);
+			}}
+			className="cursor-pointer flex flex-wrap rounded-lg hover:bg-sptf_card_hover"
+		>
 			<div className="w-16 pb-2 pr-2 pl-2 pt-4 text-center">
-				<Heart />
+				{/* <Heart/> */}
 			</div>
 
 			<div className="p-2">
@@ -102,10 +93,6 @@ function Track(props) {
 				<a className="text-gray-300">
 					{durasi_menit}:{durasi_detik}
 				</a>
-			</div>
-
-			<div className="w-12 p-2">
-				<AddButton />
 			</div>
 		</div>
 	);
