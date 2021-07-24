@@ -25,7 +25,7 @@ function Home(props) {
 			<div className="flex flex-wrap p-5 bg-sptf_card_hover rounded">
 				<div className="mr-5">
 					<img
-						src={props.user.images[0].url}
+						src={props.user.images[0]}
 						title={props.user.display_name}
 						alt="{props.album_name}"
 						className="object-cover rounded-full w-16 h-16"
