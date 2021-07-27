@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Track from "./Track";
 
 function TrackHeader(props) {
-	const [selected_track, set_selected_track] = useState(null);
-
 	function Header() {
 		return (
 			<div className="flex flex-wrap border-b mb-3">
@@ -38,11 +36,6 @@ function TrackHeader(props) {
 						album_name={item.album.name}
 						duration={item.duration_ms}
 						data={item}
-						fav_tracks={props.fav_tracks}
-						set_fav_tracks={props.set_fav_tracks}
-						set_selected_track={set_selected_track}
-						track_id={props.track_id}
-						set_track_id={props.set_track_id}
 						set_view={props.set_view}
 					/>
 				);

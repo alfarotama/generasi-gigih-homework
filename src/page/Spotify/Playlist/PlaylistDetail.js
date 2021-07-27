@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
 import PlaylistHeader from "../../../components/PlaylistHeader";
 
+import { useSelector, useDispatch } from "react-redux";
+import { selectToken } from "../../../redux/tokenSlice";
+
 const axios = require("axios");
 
 function PlaylistDetail(props) {
+	const token = useSelector(selectToken);
+
 	const [selected_playlist, set_selected_playlist] = useState([]);
 	const [is_loading, set_is_loading] = useState(true);
 
 	async function getTracks() {
 		try {
-			// set_is_loading(true);
 			await axios
 				.get("https://api.spotify.com/v1/playlists/" + props.playlist_id, {
 					headers: {
-						Authorization: "Bearer " + props.token,
+						Authorization: "Bearer " + token,
 					},
 				})
 				.then((res) => {
@@ -33,13 +37,7 @@ function PlaylistDetail(props) {
 	function TesTombol() {
 		return (
 			<a
-				onClick={() => {
-					// console.log(selected_playlist.tracks.items[0].track.name);
-					// console.log(props.playlist_id);
-
-					console.log(selected_playlist.tracks);
-					console.log(is_loading);
-				}}
+				onClick={() => {}}
 				className="cursor-pointer text-white bg-blue-500 p-2 rounded-lg"
 			>
 				Tes tombol
@@ -83,12 +81,7 @@ function PlaylistDetail(props) {
 
 					{selected_playlist.tracks.total != 0 && (
 						<PlaylistHeader
-							token={props.token}
 							tracks={selected_playlist.tracks.items}
-							fav_tracks={props.fav_tracks}
-							set_fav_tracks={props.set_fav_tracks}
-							track_id={props.track_id}
-							set_track_id={props.set_track_id}
 							set_view={props.set_view}
 						/>
 					)}
@@ -96,8 +89,6 @@ function PlaylistDetail(props) {
 			);
 		}
 	}
-
-	// console.log(selected_playlist);
 
 	return (
 		<>

@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
+
+import { useSelector } from "react-redux";
+import { selectToken } from "../../../redux/tokenSlice";
+import { selectSelectedTrack } from "../../../redux/selectedTrackSlice";
+
 const axios = require("axios");
 
 function AddToPlaylist(props) {
+	const token = useSelector(selectToken);
+	const selecedTrack = useSelector(selectSelectedTrack);
+
 	const [playlists, set_playlists] = useState([]);
 	const [selected_playlist_id, set_selected_playlist_id] = useState(null);
 
 	async function getPlaylists() {
 		try {
 			await axios
-				.get("https://api.spotify.com/v1/me/playlists?limit=10", {
+				.get("https://api.spotify.com/v1/me/playlists", {
 					headers: {
-						Authorization: "Bearer " + props.token,
+						Authorization: "Bearer " + token,
 					},
 				})
 				.then((res) => {
@@ -18,29 +26,23 @@ function AddToPlaylist(props) {
 				});
 		} catch (err) {
 			console.error(err);
-		} finally {
-			// set_selected_playlist_id(playlists[0].id);
 		}
 	}
 
 	async function doAdd() {
-		// console.log(selected_playlist_id);
-		// console.log(props.selected_track.uri);
 		if (selected_playlist_id) {
 			try {
 				let url =
 					"https://api.spotify.com/v1/playlists/" +
 					selected_playlist_id +
 					"/tracks?uris=" +
-					props.selected_track.uri;
+					selecedTrack.uri;
 				await axios.post(
 					url,
-					{
-						// uris: props.selected_track.uri,
-					},
+					{},
 					{
 						headers: {
-							Authorization: "Bearer " + props.token,
+							Authorization: "Bearer " + token,
 							"Content-Type": "application/json",
 							Accept: "application/json",
 						},
@@ -113,7 +115,7 @@ function AddToPlaylist(props) {
 								doAdd();
 							}}
 							type="button"
-							className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-sptf hover:bg-gray-600 text-base font-medium text-white sm:ml-3 sm:w-auto sm:text-sm"
+							className="w-full inline-flex justify-center rounded-md border border-transparent px-4 py-2 bg-sptf hover:bg-gray-600 text-base font-medium text-white sm:ml-3 sm:w-auto sm:text-sm"
 						>
 							Done
 						</button>
@@ -122,7 +124,7 @@ function AddToPlaylist(props) {
 								props.set_show_add_modal(false);
 							}}
 							type="button"
-							className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+							className="mt-3 w-full inline-flex justify-center rounded-md border-2 border-gray-400 px-4 py-2 text-base font-medium text-gray-400 hover:border-sptf hover:text-sptf sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
 						>
 							Cancel
 						</button>
