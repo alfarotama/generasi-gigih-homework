@@ -1,65 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+
+import { useDispatch } from "react-redux";
+import { updateSelectedTrack } from "../redux/selectedTrackSlice";
+
+import { getDuration } from "../utils";
 
 function Track(props) {
-	let durasi_menit = Number((props.duration / 60000).toFixed(0));
-	let durasi_detik = Number(((props.duration % 60000) / 1000).toFixed(0));
-	if (durasi_detik < 10) durasi_detik = `0${durasi_detik}`;
-
-	const [isfav, set_isfav] = useState(
-		props.fav_tracks.filter((item) => {
-			return item.id === props.data.id;
-		}).length === 0
-			? false
-			: true
-	);
-
-	const doFav = () => {
-		if (
-			props.fav_tracks.filter((item) => {
-				return item.id === props.data.id;
-			}).length === 0
-		) {
-			props.set_fav_tracks([...props.fav_tracks, props.data]);
-		} else {
-			let item = props.fav_tracks.filter((item) => {
-				return item.id === props.data.id;
-			})[0];
-			let index = props.fav_tracks.indexOf(item);
-			const copy = [...props.fav_tracks];
-			copy.splice(index, 1);
-			props.set_fav_tracks(copy);
-		}
-		set_isfav(!isfav);
-	};
-
-	function Heart() {
-		if (isfav) {
-			return (
-				<div
-					className="cursor-pointer"
-					// onClick= {() => {doFav()}}
-				>
-					<i className="text-xl text-red-500 fas fa-heart"></i>
-				</div>
-			);
-		} else {
-			return (
-				<div
-					className="cursor-pointer"
-					// onClick= {() => {doFav()}}
-				>
-					<i className="text-xl text-gray-500 far fa-heart hover:text-gray-100"></i>
-				</div>
-			);
-		}
-	}
+	const dispatch = useDispatch();
 
 	return (
 		<div
 			href="#"
 			onClick={() => {
 				props.set_view("trackdetail");
-				props.set_track_id(props.data.id);
+				dispatch(updateSelectedTrack(props.data));
 			}}
 			className="cursor-pointer flex flex-wrap rounded-lg hover:bg-sptf_card_hover"
 		>
@@ -90,9 +44,7 @@ function Track(props) {
 			</div>
 
 			<div className="w-24 p-2">
-				<a className="text-gray-300">
-					{durasi_menit}:{durasi_detik}
-				</a>
+				<a className="text-gray-300">{getDuration(props.duration)}</a>
 			</div>
 		</div>
 	);

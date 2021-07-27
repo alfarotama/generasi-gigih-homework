@@ -1,54 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AddToPlaylist from "./AddToPlaylist";
-const axios = require("axios");
 
-function TrackDetail(props) {
-	const [selected_track, set_selected_track] = useState([]);
-	const [is_loading, set_is_loading] = useState(true);
+import { useSelector } from "react-redux";
+import { selectSelectedTrack } from "../../../redux/selectedTrackSlice";
+
+function TrackDetail() {
+	const selecedTrack = useSelector(selectSelectedTrack);
+
 	const [show_add_modal, set_show_add_modal] = useState(false);
-
-	async function getTrackInfo() {
-		try {
-			await axios
-				.get("https://api.spotify.com/v1/tracks/" + props.track_id, {
-					headers: {
-						Authorization: "Bearer " + props.token,
-					},
-				})
-				.then((res) => {
-					set_selected_track(res.data);
-				});
-		} catch (err) {
-			console.error(err);
-		} finally {
-			set_is_loading(false);
-		}
-	}
-
-	useEffect(() => {
-		getTrackInfo();
-		// console.log(selected_track);
-	}, []);
-
-	function TesTombol() {
-		return (
-			<a
-				onClick={() => {
-					console.log("Selected track:");
-					console.log(selected_track);
-				}}
-				className="cursor-pointer text-white bg-blue-500 p-2 rounded-lg"
-			>
-				Tes tombol
-			</a>
-		);
-	}
 
 	function PlayButton() {
 		return (
 			<div className="mr-3">
 				<a
-					href={selected_track.external_urls.spotify}
+					href={selecedTrack.external_urls.spotify}
 					target="new"
 					title="Play on Spotify"
 					className="cursor-pointer text-sm text-white py-2 px-4 rounded-full bg-sptf hover:bg-gray-600"
@@ -75,57 +40,38 @@ function TrackDetail(props) {
 		);
 	}
 
-	function Page() {
-		if (is_loading) {
-			return <a className="text-white">Loading...</a>;
-		} else {
-			return (
-				<>
-					{show_add_modal && (
-						<AddToPlaylist
-							token={props.token}
-							selected_track={selected_track}
-							set_show_add_modal={set_show_add_modal}
-						/>
-					)}
-
-					<div className="flex flex-wrap mt-10">
-						<div className="p-5">
-							<img
-								src={selected_track.album.images[0].url}
-								title={selected_track.name}
-								alt="{props.album_name}"
-								className="object-cover rounded w-52 h-52"
-							/>
-						</div>
-					</div>
-
-					<div className="p-5">
-						<div className="mb-5">
-							<a className="text-7xl text-white font-bold">
-								{selected_track.name}
-							</a>
-						</div>
-						<div className="">
-							<a className="text-base text-gray-300">
-								{selected_track.album.artists[0].name}
-							</a>
-						</div>
-					</div>
-
-					<div className="flex flex-wrap pl-5 mt-5">
-						<PlayButton />
-						<AddToPlaylistButton />
-					</div>
-				</>
-			);
-		}
-	}
-
 	return (
 		<>
-			<Page />
-			{/* <TesTombol/> */}
+			{show_add_modal && (
+				<AddToPlaylist set_show_add_modal={set_show_add_modal} />
+			)}
+
+			<div className="flex flex-wrap mt-10">
+				<div className="p-5">
+					<img
+						src={selecedTrack.album.images[0].url}
+						title={selecedTrack.name}
+						alt="{props.album_name}"
+						className="object-cover rounded w-52 h-52"
+					/>
+				</div>
+			</div>
+
+			<div className="p-5">
+				<div className="mb-5">
+					<a className="text-7xl text-white font-bold">{selecedTrack.name}</a>
+				</div>
+				<div className="">
+					<a className="text-base text-gray-300">
+						{selecedTrack.album.artists[0].name}
+					</a>
+				</div>
+			</div>
+
+			<div className="flex flex-wrap pl-5 mt-5">
+				<PlayButton />
+				<AddToPlaylistButton />
+			</div>
 		</>
 	);
 }

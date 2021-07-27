@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Playlist from "../../../components/Playlist";
+
+import { useSelector, useDispatch } from "react-redux";
+import { selectToken } from "../../../redux/tokenSlice";
+
 const axios = require("axios");
 
 function PlaylistAll(props) {
+	const token = useSelector(selectToken);
+
 	const [playlists, set_playlists] = useState([]);
-	const [show_form, set_show_form] = useState(false);
 
 	function AddButton() {
 		function handleAddButton() {
 			props.set_view("newplaylist");
-			// console.log(playlists);
 		}
 
 		return (
@@ -29,11 +33,10 @@ function PlaylistAll(props) {
 
 	async function getPlaylists() {
 		try {
-			//   set_playlists([]);
 			await axios
 				.get("https://api.spotify.com/v1/me/playlists?limit=50", {
 					headers: {
-						Authorization: "Bearer " + props.token,
+						Authorization: "Bearer " + token,
 					},
 				})
 				.then((res) => {
@@ -41,14 +44,11 @@ function PlaylistAll(props) {
 				});
 		} catch (err) {
 			console.error(err);
-		} finally {
-			//   console.log(playlists);
 		}
 	}
 
 	useEffect(() => {
 		getPlaylists();
-		// console.log(playlists);
 	}, []);
 
 	return (

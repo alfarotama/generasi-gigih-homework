@@ -1,80 +1,32 @@
-import React, { useState, useEffect } from "react";
-import TrackHeader from "../../../components/TrackHeader";
+import React, { useState } from "react";
+import PlaylistAll from "./PlaylistAll";
+import NewForm from "./NewForm";
+import PlaylistDetail from "./PlaylistDetail";
+import TrackDetail from "../Track/TrackDetail";
 
-const axios = require("axios");
-
-function SearchForm(props) {
-	const [query, set_query] = useState("Twice");
-	const [tracks, set_tracks] = useState([]);
-
-	async function clickSearch() {
-		try {
-			// set_tracks([]);
-			let url =
-				"https://api.spotify.com/v1/search?q=" + query + "&type=track,artist";
-			await axios
-				.get(url, {
-					headers: {
-						Authorization: "Bearer " + props.token,
-					},
-					// params: {
-					//   q: query,
-					//   type: "tracks,artist"
-					// }
-				})
-				.then((res) => {
-					set_tracks(res.data.tracks.items);
-				});
-		} catch (err) {
-			console.error(err);
-		} finally {
-			// console.log(tracks);
-		}
-	}
-
-	useEffect(() => {
-		// clickSearch();
-	}, []);
+function PlaylistPage() {
+	const [view, set_view] = useState("playlistall");
+	const [playlist_id, set_playlist_id] = useState(null);
 
 	return (
 		<>
-			<div className="flex flex-wrap w-10/12 my-10">
-				<div className="w-6/12">
-					<a className="text-2xl text-white font-bold">Search tracks</a>
-				</div>
-			</div>
+			{view === "playlistall" && (
+				<PlaylistAll set_view={set_view} set_playlist_id={set_playlist_id} />
+			)}
 
-			<div className="w-full">
-				<input
-					onChange={(event) => {
-						set_query(event.target.value);
-					}}
-					value={query}
-					type="text"
-					className="bg-white px-2 py-1 rounded-bl rounded-tl w-64 mb-3"
-					placeholder="Type anything..."
-				></input>
-				<button
-					onClick={() => {
-						clickSearch();
-					}}
-					className="bg-sptf hover:bg-gray-600 px-2 py-1 mb-3 text-white rounded-br rounded-tr"
-				>
-					<i className="fa fa-search"></i>
-				</button>
-			</div>
+			{view === "newplaylist" && <NewForm set_view={set_view} />}
 
-			<TrackHeader
-				token={props.token}
-				tracks={tracks}
-				fav_tracks={props.fav_tracks}
-				set_fav_tracks={props.set_fav_tracks}
-				track_id={props.track_id}
-				set_track_id={props.set_track_id}
-				set_view={props.set_view}
-			/>
+			{view === "playlistdetail" && (
+				<PlaylistDetail
+					set_view={set_view}
+					playlist_id={playlist_id}
+					set_view={set_view}
+				/>
+			)}
+
+			{view === "trackdetail" && <TrackDetail />}
 		</>
 	);
 }
 
-export default SearchForm;
+export default PlaylistPage;

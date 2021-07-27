@@ -1,10 +1,11 @@
 import React from "react";
+import { root_url } from "../values";
 
 function Menu(props) {
 	return (
 		<div className="text-left">
 			<div className="my-10">
-				<a href="http://localhost:3000">
+				<a href={root_url}>
 					<img src="spotify.png" className="w-32" alt="logo" />
 				</a>
 			</div>
