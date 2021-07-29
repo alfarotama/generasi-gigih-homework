@@ -19,9 +19,8 @@ function PlaylistAll(props) {
 		return (
 			<div className="p-2">
 				<a
-					onClick={() => {
-						handleAddButton();
-					}}
+					// onClick={() => {handleAddButton()}}
+					href="/playlists/new"
 					title="Create new playlist"
 					className="cursor-pointer text-white py-2 px-5 rounded-full border-2 border-sptf_dark_main hover:border-sptf hover:text-sptf "
 				>

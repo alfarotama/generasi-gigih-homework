@@ -20,23 +20,25 @@ function LoginPage() {
 	}
 
 	return (
-		<center>
-			<span
-				className="hidden sm:inline-block sm:align-middle sm:h-screen"
-				aria-hidden="true"
-			>
-				&#8203;
-			</span>
+		<div className="bg-sptf_dark_main min-h-screen">
+			<center>
+				<span
+					className="hidden sm:inline-block sm:align-middle sm:h-screen"
+					aria-hidden="true"
+				>
+					&#8203;
+				</span>
 
-			<center className="inline-block align-bottom justify-center transform sm:my-8 sm:align-middle ">
-				<div className="mb-10 inline-block">
-					<img src="spotify_mini.png" className="w-32" />
-				</div>
-				<div className="">
-					<LoginButton />
-				</div>
+				<center className="inline-block align-bottom justify-center transform sm:my-8 sm:align-middle ">
+					<div className="mb-10 inline-block">
+						<img src="spotify_mini.png" className="w-32" />
+					</div>
+					<div className="">
+						<LoginButton />
+					</div>
+				</center>
 			</center>
-		</center>
+		</div>
 	);
 }
 
