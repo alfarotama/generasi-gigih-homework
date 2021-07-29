@@ -4,44 +4,44 @@ import Home from "./Home";
 import PlaylistPage from "../Playlist";
 import SearchPage from "../Search";
 import LoginPage from "./LoginPage";
+import NewForm from "../Playlist/NewForm";
 import { getHashParams } from "../../../utils";
+import { root_url } from "../../../values";
 
 import { useSelector, useDispatch } from "react-redux";
-import { updateToken, selectToken } from "../../../redux/tokenSlice";
-import { updateUser, selectUser } from "../../../redux/userSlice";
+import { setToken, removeToken, selectToken } from "../../../redux/tokenSlice";
+import { setUser, selectUser } from "../../../redux/userSlice";
 
 const axios = require("axios");
 
-function SpotifyPage() {
+function SpotifyPage(props) {
 	const dispatch = useDispatch();
 	const token = useSelector(selectToken);
 	const user = useSelector(selectUser);
 
-	const [view, set_view] = useState("home");
+	const [view, set_view] = useState(props.page);
 
-	const menu_list = [
+	const route_list = [
 		{
-			name: "home",
-			text: "Home",
-			icon: "fa-home",
+			url: "home",
 			page: <Home />,
 		},
 		{
-			name: "search",
-			text: "Search",
-			icon: "fa-search",
+			url: "search",
 			page: <SearchPage />,
 		},
 		{
-			name: "playlists",
-			text: "Playlists",
-			icon: "fa-headphones-alt",
+			url: "playlists",
 			page: <PlaylistPage />,
+		},
+		{
+			url: "new_playlist",
+			page: <NewForm />,
 		},
 	];
 
 	function Page() {
-		const selected_page = menu_list.filter((item) => item.name === view);
+		const selected_page = route_list.filter((item) => item.url === view);
 		return selected_page[0].page;
 	}
 
@@ -55,7 +55,7 @@ function SpotifyPage() {
 					},
 				})
 				.then((res) => {
-					dispatch(updateUser(res.data));
+					dispatch(setUser(res.data));
 				});
 		} catch (err) {
 			console.error(err);
@@ -67,23 +67,21 @@ function SpotifyPage() {
 			if (getHashParams().access_token) {
 				let params = getHashParams();
 				let access_token = params.access_token;
-				dispatch(updateToken(access_token));
+				dispatch(setToken(access_token));
+				window.location = root_url;
 			}
 		}
+		getUserInfo();
 	}, []);
 
-	useEffect(() => {
-		getUserInfo();
-	}, [token]);
-
 	return (
-		<>
+		<div className="bg-sptf_dark_main min-h-screen">
 			{!token && <LoginPage />}
 
 			{token && user && (
 				<>
 					<div className="p-5 w-56 fixed object-left object-top h-screen bg-sptf_black">
-						<Menu view={view} set_view={set_view} menu_list={menu_list} />
+						<Menu />
 					</div>
 
 					<div className="w-full flex flex-wrap">
@@ -95,7 +93,7 @@ function SpotifyPage() {
 					</div>
 				</>
 			)}
-		</>
+		</div>
 	);
 }
 

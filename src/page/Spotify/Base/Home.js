@@ -2,8 +2,8 @@ import React from "react";
 import { root_url } from "../../../values";
 
 import { useSelector, useDispatch } from "react-redux";
-import { updateToken } from "../../../redux/tokenSlice";
-import { updateUser, selectUser } from "../../../redux/userSlice";
+import { setToken, removeToken } from "../../../redux/tokenSlice";
+import { setUser, removeUser, selectUser } from "../../../redux/userSlice";
 
 function Home() {
 	const dispatch = useDispatch();
@@ -11,16 +11,12 @@ function Home() {
 
 	function LogoutButton() {
 		return (
-			<div
-				className="border-2 border-red-600 hover:bg-red-600 rounded-full text-red-600 hover:text-white text-sm font-medium px-3 py-1 cursor-pointer"
-				onClick={() => {
-					dispatch(updateToken(null));
-					dispatch(updateUser(null));
-					window.location = root_url;
-				}}
+			<a
+				href="/logout"
+				className="my-1 border-2 border-red-600 hover:bg-red-600 rounded-full text-red-600 hover:text-white text-sm font-medium px-3 py-1 cursor-pointer"
 			>
-				<a className="my-1">LOGOUT</a>
-			</div>
+				LOGOUT
+			</a>
 		);
 	}
 
