@@ -5,7 +5,7 @@ module.exports = {
 		extend: {
 			colors: {
 				sptf_primary: "#1ED760",
-				sptf_main: "#F0F0F0",
+				sptf_main: "#000000",
 				sptf_card: "#2B2B2B",
 				sptf_card_hover: "#383838",
 
