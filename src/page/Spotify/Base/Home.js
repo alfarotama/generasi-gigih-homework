@@ -1,13 +1,36 @@
-import React from "react";
-import { root_url } from "../../../values";
+import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setToken, removeToken } from "../../../redux/tokenSlice";
-import { setUser, removeUser, selectUser } from "../../../redux/userSlice";
+import { selectToken } from "../../../redux/tokenSlice";
+import { setUser, selectUser } from "../../../redux/userSlice";
+
+const axios = require("axios");
 
 function Home() {
 	const dispatch = useDispatch();
+	const token = useSelector(selectToken);
 	const user = useSelector(selectUser);
+
+	async function getUserInfo() {
+		try {
+			let url = "https://api.spotify.com/v1/me";
+			await axios
+				.get(url, {
+					headers: {
+						Authorization: "Bearer " + token,
+					},
+				})
+				.then((res) => {
+					dispatch(setUser(res.data));
+				});
+		} catch (err) {
+			console.error(err);
+		}
+	}
+
+	useEffect(() => {
+		getUserInfo();
+	}, []);
 
 	function LogoutButton() {
 		return (
@@ -22,30 +45,30 @@ function Home() {
 
 	function UserCard() {
 		return (
-			<div className="flex flex-wrap p-5 bg-sptf_card_hover rounded w-4/12">
-				<div className="mr-5">
-					<img
-						src={user.images[0].url}
-						title={user.display_name}
-						alt={user.display_name}
-						className="object-cover rounded-full w-16 h-16"
-					/>
-				</div>
-				<div className="mr-5">
-					<a className="text-lg font-bold text-white">{user.display_name}</a>
-				</div>
-				<div className="text-right">
-					<LogoutButton />
+			<div className="p-5 bg-sptf_card shadow rounded-xl w-4/12">
+				<div className="flex flex-wrap">
+					<div className="mr-5">
+						<img
+							src={user.images[0].url}
+							title={user.display_name}
+							alt={user.display_name}
+							className="object-cover rounded-full w-16 h-16"
+						/>
+					</div>
+					<div className="mr-5">
+						<span className="text-lg font-bold text-sptf_dark_half">
+							{user.display_name}
+						</span>
+					</div>
+					<div className="text-right">
+						<LogoutButton />
+					</div>
 				</div>
 			</div>
 		);
 	}
 
-	return (
-		<>
-			<UserCard />
-		</>
-	);
+	return <>{user && <UserCard />}</>;
 }
 
 export default Home;

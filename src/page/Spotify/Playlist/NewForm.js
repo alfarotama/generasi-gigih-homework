@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectToken } from "../../../redux/tokenSlice";
 import { selectUser } from "../../../redux/userSlice";
 
@@ -57,10 +57,12 @@ function NewForm(props) {
 	}
 
 	return (
-		<>
+		<div className="bg-sptf_card p-5 shadow rounded-lg">
 			<div className="flex flex-wrap w-10/12 my-10">
 				<div className="w-6/12">
-					<a className="text-2xl text-white font-bold">Create new playlist</a>
+					<span className="text-2xl text-sptf_dark_half font-bold">
+						Create new playlist
+					</span>
 				</div>
 			</div>
 
@@ -78,7 +80,7 @@ function NewForm(props) {
 						value={form.title}
 						minlength="10"
 						required
-						className="bg-gray-600 text-gray-100 py-1 px-3 rounded w-5/12"
+						className="bg-sptf_main text-sptf_dark_half py-1 px-3 rounded w-5/12"
 						type="text"
 						placeholder="Title..."
 					/>
@@ -92,20 +94,20 @@ function NewForm(props) {
 						value={form.desc}
 						minlength="20"
 						required
-						className="bg-gray-600 text-gray-100 py-1 px-3 rounded w-5/12 h-24"
+						className="bg-sptf_main text-sptf_dark_half py-1 px-3 rounded w-5/12 h-24"
 						placeholder="Description..."
 					></textarea>
 				</div>
 				<div>
 					<button
 						type="submit"
-						className="justify-center rounded px-4 py-2 bg-sptf hover:bg-gray-600 text-base font-medium text-white"
+						className="mt-4 justify-center rounded px-4 py-2 bg-sptf_primary hover:bg-gray-600 text-base font-medium text-white"
 					>
 						Submit
 					</button>
 				</div>
 			</form>
-		</>
+		</div>
 	);
 }
 

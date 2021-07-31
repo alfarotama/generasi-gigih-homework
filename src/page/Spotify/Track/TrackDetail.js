@@ -16,7 +16,7 @@ function TrackDetail() {
 					href={selecedTrack.external_urls.spotify}
 					target="new"
 					title="Play on Spotify"
-					className="cursor-pointer text-sm text-white py-2 px-4 rounded-full bg-sptf hover:bg-gray-600"
+					className="cursor-pointer text-sm text-white py-2 px-4 rounded-full bg-sptf_primary hover:bg-gray-600"
 				>
 					<i className="text-sm fa fa-play mr-1"></i> Play on Spotify
 				</a>
@@ -27,15 +27,15 @@ function TrackDetail() {
 	function AddToPlaylistButton() {
 		return (
 			<div className="">
-				<a
+				<span
 					onClick={() => {
 						set_show_add_modal(true);
 					}}
 					title="Add to playlist"
-					className="cursor-pointer text-sm text-white py-2 px-4 rounded-full border-2 border-gray-400 hover:border-sptf hover:text-sptf "
+					className="cursor-pointer text-sm text-sptf_dark_half py-2 px-4 rounded-full border-2 border-sptf_dark_half hover:border-sptf_primary hover:text-sptf_primary "
 				>
 					<i className="text-sm fa fa-headphones-alt mr-1"></i> Add to playlist
-				</a>
+				</span>
 			</div>
 		);
 	}
@@ -59,12 +59,14 @@ function TrackDetail() {
 
 			<div className="p-5">
 				<div className="mb-5">
-					<a className="text-7xl text-white font-bold">{selecedTrack.name}</a>
+					<span className="text-7xl text-sptf_dark_half font-bold">
+						{selecedTrack.name}
+					</span>
 				</div>
 				<div className="">
-					<a className="text-base text-gray-300">
+					<span className="text-base text-sptf_dark_quarter">
 						{selecedTrack.album.artists[0].name}
-					</a>
+					</span>
 				</div>
 			</div>
 

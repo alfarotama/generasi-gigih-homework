@@ -1,5 +1,6 @@
 import React from "react";
 import { client_id, scope, redirect_uri } from "../../../values";
+import { public_url } from "../../../values";
 
 function LoginPage() {
 	function LoginButton() {
@@ -11,16 +12,16 @@ function LoginPage() {
 
 		return (
 			<a
-				className="bg-sptf hover:bg-gray-600 w-52 rounded-full text-white font-medium px-1 py-2 flex cursor-pointer justify-center align-middle"
+				className="bg-sptf_primary hover:bg-gray-600 w-52 rounded-full text-white font-medium px-1 py-2 flex cursor-pointer justify-center align-middle"
 				href={spotify_url}
 			>
-				LOG IN WITH SPOTIFY
+				LOG-IN WITH SPOTIFY
 			</a>
 		);
 	}
 
 	return (
-		<div className="bg-sptf_dark_main min-h-screen">
+		<div className="bg-sptf_main min-h-screen">
 			<center>
 				<span
 					className="hidden sm:inline-block sm:align-middle sm:h-screen"
@@ -31,7 +32,11 @@ function LoginPage() {
 
 				<center className="inline-block align-bottom justify-center transform sm:my-8 sm:align-middle ">
 					<div className="mb-10 inline-block">
-						<img src="spotify_mini.png" className="w-32" />
+						<img
+							src={public_url + "/img/spotify_mini.png"}
+							alt="Icon"
+							className="w-36"
+						/>
 					</div>
 					<div className="">
 						<LoginButton />
