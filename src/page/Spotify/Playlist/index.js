@@ -17,11 +17,7 @@ function PlaylistPage() {
 			{view === "newplaylist" && <NewForm set_view={set_view} />}
 
 			{view === "playlistdetail" && (
-				<PlaylistDetail
-					set_view={set_view}
-					playlist_id={playlist_id}
-					set_view={set_view}
-				/>
+				<PlaylistDetail set_view={set_view} playlist_id={playlist_id} />
 			)}
 
 			{view === "trackdetail" && <TrackDetail />}

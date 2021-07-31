@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Playlist from "../../../components/Playlist";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectToken } from "../../../redux/tokenSlice";
 
 const axios = require("axios");
@@ -12,17 +12,12 @@ function PlaylistAll(props) {
 	const [playlists, set_playlists] = useState([]);
 
 	function AddButton() {
-		function handleAddButton() {
-			props.set_view("newplaylist");
-		}
-
 		return (
-			<div className="p-2">
+			<div className="p-1">
 				<a
-					// onClick={() => {handleAddButton()}}
 					href="/playlists/new"
 					title="Create new playlist"
-					className="cursor-pointer text-white py-2 px-5 rounded-full border-2 border-sptf_dark_main hover:border-sptf hover:text-sptf "
+					className="cursor-pointer text-sptf_primary py-2 px-5 rounded-full border-2 border-sptf_main hover:border-sptf_primary hover:bg-sptf_primary hover:text-white"
 				>
 					<i className="text-sm fa fa-plus mr-1"></i> Create new playlist
 				</a>
@@ -54,7 +49,9 @@ function PlaylistAll(props) {
 		<>
 			<div className="flex flex-wrap w-10/12 my-10">
 				<div className="w-6/12">
-					<a className="text-2xl text-white font-bold">My playlists</a>
+					<span className="text-2xl text-sptf_dark_half font-bold">
+						My playlists
+					</span>
 				</div>
 				<div className="w-6/12 text-right">
 					<AddButton />

@@ -15,12 +15,8 @@ function Track(props) {
 				props.set_view("trackdetail");
 				dispatch(updateSelectedTrack(props.data));
 			}}
-			className="cursor-pointer flex flex-wrap rounded-lg hover:bg-sptf_card_hover"
+			className="cursor-pointer flex flex-wrap rounded-xl hover:bg-sptf_main"
 		>
-			<div className="w-16 pb-2 pr-2 pl-2 pt-4 text-center">
-				{/* <Heart/> */}
-			</div>
-
 			<div className="p-2">
 				<img
 					src={props.image_url}
@@ -32,19 +28,23 @@ function Track(props) {
 
 			<div className="w-80 p-2">
 				<div className="-mb-1">
-					<a className="text-white">{props.track_title}</a>
+					<span className="text-sptf_dark_half">{props.track_title}</span>
 				</div>
 				<div>
-					<a className="text-gray-400 text-sm">{props.artist_name}</a>
+					<span className="text-sptf_dark_quarter text-sm">
+						{props.artist_name}
+					</span>
 				</div>
 			</div>
 
 			<div className="w-80 p-2">
-				<a className="text-gray-300">{props.album_name}</a>
+				<span className="text-sptf_dark_quarter">{props.album_name}</span>
 			</div>
 
 			<div className="w-24 p-2">
-				<a className="text-gray-300">{getDuration(props.duration)}</a>
+				<span className="text-sptf_dark_quarter">
+					{getDuration(props.duration)}
+				</span>
 			</div>
 		</div>
 	);

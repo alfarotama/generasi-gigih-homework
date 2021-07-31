@@ -4,11 +4,14 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				sptf: "#1ED760",
-				sptf_black: "#000000",
-				sptf_dark_main: "#0E0E0E",
+				sptf_primary: "#1ED760",
+				sptf_main: "#F0F0F0",
 				sptf_card: "#2B2B2B",
 				sptf_card_hover: "#383838",
+
+				sptf_dark: "#242526",
+				sptf_dark_half: "#4C4C4D",
+				sptf_dark_quarter: "#737373",
 			},
 		},
 	},

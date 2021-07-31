@@ -81,12 +81,12 @@ function AddToPlaylist(props) {
 					&#8203;
 				</span>
 
-				<div className="inline-block align-bottom bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+				<div className="inline-block align-bottom bg-sptf_card rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
 					<div className="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
 						<div className="sm:flex sm:items-start">
 							<div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
 								<h3
-									className="text-lg leading-6 font-medium text-white mb-5"
+									className="text-lg leading-6 font-medium text-sptf_dark_half mb-5"
 									id="modal-title"
 								>
 									Add track to playlist
@@ -96,7 +96,7 @@ function AddToPlaylist(props) {
 										onChange={(event) => {
 											set_selected_playlist_id(event.target.value);
 										}}
-										className="bg-gray-600 text-gray-100 py-3 px-3 rounded w-80"
+										className="bg-sptf_main text-sptf_dark_quarter py-3 px-3 rounded w-80"
 									>
 										<option value="" disabled selected>
 											Select a playlist
@@ -115,7 +115,7 @@ function AddToPlaylist(props) {
 								doAdd();
 							}}
 							type="button"
-							className="w-full inline-flex justify-center rounded-md border border-transparent px-4 py-2 bg-sptf hover:bg-gray-600 text-base font-medium text-white sm:ml-3 sm:w-auto sm:text-sm"
+							className="w-full inline-flex justify-center rounded-md border border-transparent px-4 py-2 bg-sptf_primary hover:bg-gray-600 text-base font-medium text-white sm:ml-3 sm:w-auto sm:text-sm"
 						>
 							Done
 						</button>
@@ -124,7 +124,7 @@ function AddToPlaylist(props) {
 								props.set_show_add_modal(false);
 							}}
 							type="button"
-							className="mt-3 w-full inline-flex justify-center rounded-md border-2 border-gray-400 px-4 py-2 text-base font-medium text-gray-400 hover:border-sptf hover:text-sptf sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+							className="mt-3 w-full inline-flex justify-center rounded-md border-2 border-gray-400 px-4 py-2 text-base font-medium text-gray-400 hover:border-sptf_primary hover:text-sptf_primary sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
 						>
 							Cancel
 						</button>

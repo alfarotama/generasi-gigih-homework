@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PlaylistHeader from "../../../components/PlaylistHeader";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectToken } from "../../../redux/tokenSlice";
 
 const axios = require("axios");
@@ -34,20 +34,9 @@ function PlaylistDetail(props) {
 		getTracks();
 	}, []);
 
-	function TesTombol() {
-		return (
-			<a
-				onClick={() => {}}
-				className="cursor-pointer text-white bg-blue-500 p-2 rounded-lg"
-			>
-				Tes tombol
-			</a>
-		);
-	}
-
 	function Page() {
 		if (is_loading) {
-			return <a className="text-white">Loading...</a>;
+			return <span className="text-sptf_dark_half">Loading</span>;
 		} else {
 			let image =
 				"https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80";
@@ -55,8 +44,8 @@ function PlaylistDetail(props) {
 				image = selected_playlist.images[0].url;
 			}
 			return (
-				<>
-					<div className="flex flex-wrap w-full my-10">
+				<div className="bg-sptf_card p-5 shadow rounded-xl">
+					<div className="flex flex-wrap w-full my-5">
 						<div className="mr-5">
 							<img
 								src={image}
@@ -67,25 +56,25 @@ function PlaylistDetail(props) {
 						</div>
 						<div className="w-9/12">
 							<div className="mb-3">
-								<a className="text-2xl text-white font-bold">
+								<span className="text-2xl text-sptf_dark_half font-bold">
 									{selected_playlist.name}
-								</a>
+								</span>
 							</div>
 							<div className="">
-								<p className="text-sm text-gray-400">
+								<p className="text-sm text-sptf_dark_quarter">
 									{selected_playlist.description}
 								</p>
 							</div>
 						</div>
 					</div>
 
-					{selected_playlist.tracks.total != 0 && (
+					{selected_playlist.tracks.total !== 0 && (
 						<PlaylistHeader
 							tracks={selected_playlist.tracks.items}
 							set_view={props.set_view}
 						/>
 					)}
-				</>
+				</div>
 			);
 		}
 	}
