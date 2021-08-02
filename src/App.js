@@ -1,9 +1,31 @@
 import "./App.css";
-import "tailwindcss/tailwind.css";
-import AppRouter from "./routes";
+import Homepage from "./pages/Homepage";
+import CreatePlaylist from "./pages/CreatePlaylist";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function App() {
-	return <AppRouter />;
+	const { isAuthenticated } = useSelector((state) => state.auth);
+	return (
+		<div className="App">
+			<BrowserRouter>
+				<Navbar />
+				<main>
+					<Sidebar />
+					<Switch>
+						<Route path="/create-playlist">
+							{isAuthenticated ? <CreatePlaylist /> : <Redirect to="/" />}
+						</Route>
+						<Route path="/">
+							<Homepage />
+						</Route>
+					</Switch>
+				</main>
+			</BrowserRouter>
+		</div>
+	);
 }
 
 export default App;
