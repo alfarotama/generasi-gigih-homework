@@ -1,0 +1,40 @@
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  min-width: 30vw;
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  background-color: var(--dark-modal-color);
+  box-shadow: rgba(0, 0, 0, 0.4);
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--dark-heading-color);
+}
+
+.body {
+  margin-top: 2rem;
+}
+
+.closeButton {
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.closeButton:hover {
+  opacity: 0.8;
+}
