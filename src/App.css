@@ -1,12 +1,12 @@
 .App {
-	padding: 1rem;
-	min-height: 100vh;
-	background-color: var(--dark-background-color);
-	color: var(--dark-text-color);
+  padding: 1rem;
+  min-height: 100vh;
+  background-color: var(--dark-background-color);
+  color: var(--dark-text-color);
 }
 
 .App > main {
-	display: grid;
-	grid-template-columns: 1fr 4fr;
-	gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 2rem;
 }

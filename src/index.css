@@ -1,28 +1,33 @@
 :root {
-	--dark-background-color: #121212;
-	--dark-foreground-color: #1c1c1c;
-	--dark-modal-color: #242424;
-	--dark-heading-color: #ffffff;
-	--dark-text-color: #d4d4d4;
-	--primary-button-color: #1db954;
-	--secondary-button-color: #4b4b4b;
+  --dark-background-color: #121212;
+  --dark-foreground-color: #1c1c1c;
+  --dark-modal-color: #242424;
+  --dark-heading-color: #ffffff;
+  --dark-text-color: #d4d4d4;
+  --primary-button-color: #1db954;
+  --secondary-button-color: #4b4b4b;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 body {
-	margin: 0;
-	font-family: "Inter", "Segoe UI", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	overflow: overlay;
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: overlay;
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-		monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+  cursor: pointer;
 }
 
 h1,
@@ -31,32 +36,32 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 0;
-	color: var(--dark-heading-color);
+  margin: 0;
+  color: var(--dark-heading-color);
 }
 
 input,
 select,
 textarea,
 button {
-	outline: none;
-	border: none;
-	background: none;
+  outline: none;
+  border: none;
+  background: none;
 }
 
 ::-webkit-scrollbar {
-	width: 0.5rem;
+  width: 0.5rem;
 }
 
 ::-webkit-scrollbar-track {
-	background: var(--dark-background-color);
+  background: var(--dark-background-color);
 }
 
 ::-webkit-scrollbar-thumb {
-	border-radius: 9999px;
-	background: var(--dark-foreground-color);
+  border-radius: 9999px;
+  background: var(--dark-foreground-color);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: var(--secondary-button-color);
+  background: var(--secondary-button-color);
 }
