@@ -1,0 +1,45 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  padding: 1em 1.5em;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: var(--primary-button-color);
+  color: var(--dark-heading-color);
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.button > svg {
+  margin-right: 0.5em;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.button-secondary {
+  background-color: var(--secondary-button-color);
+}
+
+.button-primary {
+  background-color: var(--primary-button-color);
+}
+
+.button-danger {
+  background-color: rgb(140, 30, 30);
+}
+
+.button-transparent {
+  background-color: transparent;
+}
+
+.button-small {
+  padding: 0.5em;
+}
