@@ -1,0 +1,39 @@
+.navbar {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  column-gap: 2rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 900;
+  font-size: 1.25em;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.search input {
+  outline: none;
+  background: none;
+  border: none;
+  padding: 1em 1.5em;
+  font-size: 1rem;
+}
+
+.search input[type='text'] {
+  width: 100%;
+  border-radius: 9999px;
+  background-color: var(--dark-foreground-color);
+  color: var(--dark-text-color);
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

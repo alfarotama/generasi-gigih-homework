@@ -1,0 +1,48 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background-color: var(--dark-foreground-color);
+  margin: 0.75rem 0;
+  transition: all 150ms ease-out;
+  cursor: pointer;
+}
+
+.wrapper:hover {
+  transform: translateX(4px);
+}
+
+a {
+  color: var(--dark-text-color);
+  text-decoration: none;
+  transition: all 150ms ease-out;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+.image {
+  border-radius: 2px;
+  margin-right: 1rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.artist {
+  margin: 0;
+  font-weight: 400;
+  color: #aaa;
+}
+.info {
+  flex: 2;
+}
+
+.action {
+  flex: 1;
+  text-align: right;
+}

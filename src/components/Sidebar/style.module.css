@@ -1,0 +1,24 @@
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 1rem;
+  transition: all 150ms ease-out;
+  cursor: pointer;
+}
+
+.item {
+  display: flex;
+  place-items: center;
+  border-radius: 4px;
+  color: var(--dark-text-color);
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+.item:hover {
+  background-color: var(--dark-foreground-color);
+}
+
+.item > svg {
+  margin-right: 1rem;
+}
